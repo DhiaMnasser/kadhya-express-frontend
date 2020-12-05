@@ -1,0 +1,40 @@
+
+<div #overlay id="overlay" class="popup position-absolute  center align-content-center ">
+
+  <form #f="ngForm" class="center align-content-center">
+    <div class="h4 d-flex justify-content-end" (click)="overlay.toggleAttribute('hidden')"><i class="fa fa-close" ></i></div>
+    <div class="form-group">
+      <label>Name</label>
+      <input #n="ngModel" placeholder="ex: Dhia Mnaser"  type="text" name="name" class="form-control" [(ngModel)]="user.name" required>
+    </div>
+    <div class="alert alert-danger h6" *ngIf="n.invalid && n.touched">name is required</div>
+
+
+    <div class="form-group">
+      <label>Username</label>
+      <input #un="ngModel" placeholder="ex: Bret" type="text" name="username" class="form-control" [(ngModel)]="user.username" required>
+    </div>
+    <div class="alert alert-danger h6" *ngIf="un.invalid && un.touched">username is required</div>
+
+
+    <div class="form-group">
+      <label>Email</label>
+      <input #e="ngModel" placeholder="ex: xxx.@xx.xyz"  type="text" name="email" class="form-control" [(ngModel)]="user.email" required>
+    </div>
+    <div class="alert alert-danger h6" *ngIf="e.invalid && e.touched">email is required</div>
+
+    <div class="form-group">
+      <label>Password</label>
+      <input #p="ngModel" placeholder="ex: xxx"  type="text" name="password" class="form-control" [(ngModel)]="user.password" required minlength="8">
+    </div>
+    <div class="alert alert-danger h6" *ngIf="p.invalid && p.touched">
+      <div *ngIf="p.errors.required">Password is required</div>
+      <div *ngIf="p.errors.minlength">password must be 8 caracters or more</div>
+    </div>
+
+    <button class="btn btn-success text-capitalize" type="button"  [disabled]="f.invalid" (click)="add()" routerLink="/home">Signup</button>
+
+    <button class="btn btn-warning ml-3 text-capitalize" type="button" routerLink="/home">Signin?</button>
+  </form>
+
+</div>

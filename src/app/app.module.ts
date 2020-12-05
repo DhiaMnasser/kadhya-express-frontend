@@ -14,7 +14,15 @@ import { ShopGridComponent } from './shop-grid/shop-grid.component';
 import { ShopSidebarComponent } from './shop-sidebar/shop-sidebar.component';
 import { ShopProductListComponent } from './shop-product-list/shop-product-list.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
-
+import { SigninComponent } from './auth/signin/signin.component';
+import { SignupComponent } from './auth/signup/signup.component';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {RouterModule} from '@angular/router';
+import {HttpClientModule} from '@angular/common/http';
+import { DashboardComponent } from './admin/dashboard/dashboard.component';
+import {TemplateFormProductComponent} from './admin/template-form-product/template-form-product.component';
+import {ListProductComponent} from './admin/list-product/list-product.component';
+import { SidenavListComponent } from './admin/sidenav-list/sidenav-list.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -28,11 +36,21 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
     ShopGridComponent,
     ShopSidebarComponent,
     ShopProductListComponent,
-    PageNotFoundComponent
+    PageNotFoundComponent,
+    SigninComponent,
+    SignupComponent,
+    DashboardComponent,
+    TemplateFormProductComponent,
+    ListProductComponent,
+    SidenavListComponent,
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule,
+    ReactiveFormsModule,
+    RouterModule,
+    HttpClientModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

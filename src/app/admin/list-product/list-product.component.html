@@ -1,0 +1,27 @@
+<h1>Product List</h1>
+
+<app-template-form-product (saveEvent)="addProduct($event)"></app-template-form-product>
+
+<table class="table">
+  <tr><th>Id</th><th>Title</th><th>Price</th><th>quantity</th><th>like</th></tr>
+  <tbody  *ngFor="let product of listProducts; let i= index" >
+  <tr>
+    <td>{{product.id}}</td>
+    <td>{{product.title}}</td>
+    <td>{{product.price}}</td>
+    <td>{{product.quantity}}</td>
+    <td>{{product.like}}</td>
+    <td><button class="btn btn-warning" (click)="incrementLike(product)">like</button></td>
+    <td>
+      <button class="btn btn-success" [disabled]="product.quantity==0">
+        buy
+      </button>
+      <button class="btn btn-success" (click)="delete(product.id)">
+        delete
+      </button>
+
+    </td>
+  </tr>
+  </tbody>
+</table>
+

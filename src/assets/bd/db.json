@@ -1,0 +1,22 @@
+{
+
+
+  "users": [
+    {
+      "name": "dhia",
+      "username": "klaizer",
+      "email": "mohameddhia.mnasser@esprit.tn",
+      "id": 1
+    }
+  ],
+  "products": [
+    {
+      "id": 55,
+      "title": "prod55",
+      "price": 59,
+      "quantity": 332,
+      "like": 11,
+      "url": ""
+    }
+  ]
+}
