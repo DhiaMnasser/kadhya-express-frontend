@@ -1,36 +1,30 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-import {Product} from '../models/product';
 import {Observable, throwError} from 'rxjs';
+import {User} from '../models/user';
+import {Order} from '../models/order';
 import {catchError} from 'rxjs/operators';
+import {Product} from '../models/product';
 
 @Injectable({
   providedIn: 'root'
 })
-export class ProductService {
+export class OrderService {
 
-  url = 'http://localhost:3000/products';
+  url = 'http://localhost:3000/orders';
   constructor(private http: HttpClient) { }
 
-  getProductsWS(): Observable<Product[]>{
-    return this.http.get<Product[]>(this.url).pipe(
+  // handling erros in service
+  getAllOrders(): Observable<Order[]>{
+    return this.http.get<Order[]>(this.url).pipe(
       catchError((err) => {
         console.error(err);
         return throwError(err);
       })
     );
   }
-  deleteProduct(id: number): Observable<any>{
-    return this.http.delete(this.url + '/' + id).pipe(
-      catchError((err) => {
-        console.error(err);
-        return throwError(err);
-      })
-    );
-  }
-
-  postProduct(product: Product): Observable<Product>{
-    return this.http.post<Product>(this.url, product).pipe(
+  getOrderById(id: number): Observable<Order>{
+    return this.http.get<Order>(this.url + '/' + id).pipe(
       catchError((err) => {
         console.error(err);
         return throwError(err);
@@ -38,9 +32,8 @@ export class ProductService {
     );
   }
 
-  putProduct(product: Product): Observable<Product>{
-    console.log('put product called');
-    return this.http.put<Product>(this.url + '/' + product.id, product).pipe(
+  postOrder(order: Order): Observable<Order>{
+    return this.http.post<Order>(this.url, order).pipe(
       catchError((err) => {
         console.error(err);
         return throwError(err);
@@ -48,8 +41,17 @@ export class ProductService {
     );
   }
 
-  getProductById(id: number): Observable<any> {
-    return this.http.get<Product>(this.url + '/' + id).pipe(
+  deleteOrder(order: Order): Observable<Order>{
+    return this.http.delete<Order>(this.url + '/' + order.ref).pipe(
+      catchError((err) => {
+        console.error(err);
+        return throwError(err);
+      })
+    );
+  }
+
+  putOrder(order: Order): Observable<Order>{
+    return this.http.put<Order>(this.url + '/' + order.ref, order).pipe(
       catchError((err) => {
         console.error(err);
         return throwError(err);

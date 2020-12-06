@@ -1,0 +1,43 @@
+<div class="col-lg-9 col-md-8 col-12">
+  <div class="row">
+    <div class="col-12">
+      <!-- Shop Top -->
+      <div class="shop-top">
+        <div class="shop-shorter">
+          <div class="single-shorter">
+            <label>Show :</label>
+            <select style="display: none;">
+              <option selected="selected">09</option>
+              <option>15</option>
+              <option>25</option>
+              <option>30</option>
+            </select><div class="nice-select" tabindex="0"><span class="current">09</span><ul class="list"><li data-value="09" class="option selected">09</li><li data-value="15" class="option">15</li><li data-value="25" class="option">25</li><li data-value="30" class="option">30</li></ul></div>
+          </div>
+          <div class="single-shorter">
+            <label>Sort By :</label>
+            <label>
+              <select style="display: none;">
+                <option selected="selected">Name</option>
+                <option>Price</option>
+                <option>Size</option>
+              </select>
+            </label>
+            <div class="nice-select" tabindex="0"><span class="current">Name</span><ul class="list"><li data-value="Name" class="option selected">Name</li><li data-value="Price" class="option">Price</li><li data-value="Size" class="option">Size</li></ul></div>
+          </div>
+        </div>
+        <ul class="view-mode">
+          <li class="active"><a href="#"><i class="fa fa-th-large"></i></a></li>
+          <li><a href="#"><i class="fa fa-th-list"></i></a></li>
+        </ul>
+      </div>
+      <!--/ End Shop Top -->
+    </div>
+  </div>
+  <div class="row " >
+<!--    -->
+    <app-product *ngFor="let p of listProducts" [product]="p" (notification)="addToCart($event)" >
+    </app-product>
+
+  </div>
+</div>
+

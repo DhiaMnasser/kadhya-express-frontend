@@ -1,18 +1,14 @@
-<mat-nav-list class="sidenav-list">
-  <a mat-list-item routerLink="/signin" >
-    <mat-icon>login</mat-icon>
+<div class="sidenav-list text-center col-2 d-flex flex-column sidenav-list center ml-1 mt-2 align-content-center bg-info">
+  <a  routerLink="/signin" >
     <span>Signin</span>
   </a>
-  <a mat-list-item routerLink="/signup" >
-    <mat-icon>perm_identity</mat-icon>
+  <a  routerLink="/signup" >
     <span>Signup</span>
   </a>
-  <a mat-list-item routerLink="/accomodation" >
-    <mat-icon>hotel</mat-icon>
-    <span>Accomodation</span>
+  <a  [routerLink]="['/admin', { outlets: {'admin':['products'] }}]" >
+    <span>Products </span>
   </a>
-  <a mat-list-item routerLink="/offers" >
-    <mat-icon>loyalty</mat-icon>
+  <a routerLink="/offers" >
     <span>Offers</span>
   </a>
-</mat-nav-list>
+</div>

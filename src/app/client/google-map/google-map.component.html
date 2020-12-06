@@ -1,0 +1,26 @@
+
+<agm-map
+  [latitude]="lat"
+  [longitude]="lng"
+  [zoom]="zoom"
+  [disableDefaultUI]="false"
+  (mapClick)="mapClicked($event)">
+
+  <agm-marker
+
+    (markerClick)="clickedMarker(marker.label)"
+    [latitude]="marker.lat"
+    [longitude]="marker.lng"
+    [label]="marker.label"
+    [markerDraggable]="marker.draggable"
+    (dragEnd)="markerDragEnd(marker, $event)">
+
+    <agm-info-window>
+      <strong>InfoWindow content</strong>
+    </agm-info-window>
+
+  </agm-marker>
+
+
+
+</agm-map>

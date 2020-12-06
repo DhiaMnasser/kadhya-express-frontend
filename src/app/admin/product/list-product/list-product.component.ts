@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {ProductService} from '../../services/product.service';
-import {Product} from '../../models/product';
+import {ProductService} from '../../../services/product.service';
+import {Product} from '../../../models/product';
 
 @Component({
   selector: 'app-list-product',
@@ -37,7 +37,6 @@ export class ListProductComponent implements OnInit {
 
   incrementLike(product: Product): void {
     console.log('increment like called ');
-    product.like++;
     this.updateProduct(product);
   }
 

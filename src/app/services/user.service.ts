@@ -10,6 +10,9 @@ import {catchError} from 'rxjs/operators';
 export class UserService {
 
   url = 'http://localhost:3000/users';
+  urlRegister = 'http://localhost:3000/register';
+  urlLogin = 'http://localhost:3000/login';
+  private currentUserSubject: any;
   constructor(private http: HttpClient) { }
 
   // handling erros in service
@@ -31,7 +34,16 @@ export class UserService {
   }
 
   postUser(user: User): Observable<User>{
-    return this.http.post<User>(this.url, user).pipe(
+    return this.http.post<User>(this.urlRegister, user).pipe(
+      catchError((err) => {
+        console.error(err);
+        return throwError(err);
+      })
+    );
+  }
+
+  userLogin(user: User): Observable<User>{
+    return this.http.post<User>(this.urlLogin, user).pipe(
       catchError((err) => {
         console.error(err);
         return throwError(err);
@@ -56,6 +68,10 @@ export class UserService {
       })
     );
   }
+
+  // getCurrentUser(): Observable<any> {
+  //   return this.currentUserSubject.asObservable();
+  // }
 
 //  !!! handling errors in component see save() function in update-user component
 }

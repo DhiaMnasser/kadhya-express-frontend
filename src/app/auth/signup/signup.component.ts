@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {User} from '../../models/user';
 import {UserService} from '../../services/user.service';
+import {map} from 'rxjs/operators';
 
 @Component({
   selector: 'app-signup',
@@ -22,7 +23,14 @@ export class SignupComponent implements OnInit {
       user => this.user = user
     );
   }
-
+  // add(): void{
+  //   map((userInfo: { token: string; user: any; }) => {
+  //     localStorage.setItem('token', userInfo.token);
+  //     sessionStorage.next(userInfo.user); // <-- pump the value in here
+  //     console.log(userInfo.user);
+  //     return userInfo.user;
+  //   });
+  // }
 
 }
 

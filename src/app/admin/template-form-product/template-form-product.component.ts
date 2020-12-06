@@ -8,18 +8,18 @@ import { Product } from '../../models/product';
 })
 export class TemplateFormProductComponent implements OnInit {
 
-  // @ts-ignore
-  product: Product;
+  product: Product ;
   @Output() saveEvent = new EventEmitter <Product> ();
 
-  constructor() { }
+  constructor() {
+    this.product = new Product();
+  }
 
   ngOnInit(): void {
     this.product = new Product();
   }
 
   save(): void {
-    this.product.like = 0;
     console.log(this.product);
     this.saveEvent.emit(this.product);
   }

@@ -1,22 +1,89 @@
 {
-
-
   "users": [
+
     {
-      "name": "dhia",
-      "username": "klaizer",
-      "email": "mohameddhia.mnasser@esprit.tn",
+      "email": "mnasser@esprit.tn",
+      "password": "$2a$10$tR2O6XexQ4jpVIBxKFpzgO5CrSss4Wc23SljgEUiACppA5FXM7WiS",
+      "name": "mnasser",
+      "username": "mnasser",
       "id": 1
     }
   ],
   "products": [
     {
-      "id": 55,
-      "title": "prod55",
-      "price": 59,
-      "quantity": 332,
-      "like": 11,
-      "url": ""
+      "id": 1,
+      "title": "abida tomates 400g",
+      "category": "",
+      "description": "",
+      "price": 30,
+      "quantity": 5,
+      "url": "assets/images/abida tomates 400g.png"
+    },
+    {
+      "id": 2,
+      "title": "abida tomates 1kg",
+      "category": "",
+      "description": "",
+      "price": 3.5,
+      "quantity": 1000,
+      "url": "assets/images/sicam tomates 1kg.png"
+    },
+    {
+      "id": 3,
+      "title": "abida tomates 400g",
+      "category": "",
+      "description": "",
+      "price": 30,
+      "quantity": 455,
+      "url": "assets/images/abida tomates 400g.png"
+    },
+    {
+      "id": 4,
+      "title": "abida tomates 1kg",
+      "category": "",
+      "description": "",
+      "price": 3.5,
+      "quantity": 1000,
+      "url": "assets/images/sicam tomates 1kg.png"
+    },
+    {
+      "id": 5,
+      "title": "abida tomates 400g",
+      "category": "",
+      "description": "",
+      "price": 30,
+      "quantity": 455,
+      "url": "assets/images/abida tomates 400g.png"
+    },
+    {
+      "id": 6,
+      "title": "abida tomates 1kg",
+      "category": "",
+      "description": "",
+      "price": 3.5,
+      "quantity": 1000,
+      "url": "assets/images/sicam tomates 1kg.png"
+    }
+  ],
+  "orders": [
+    {
+      "id": 1,
+      "ref": "xsl12",
+      "stat": false,
+      "userId": 12,
+      "date": "",
+      "totalPrice": 0,
+      "prodlist": [
+        {
+          "id": 12,
+          "title": "prod12",
+          "category": "",
+          "description": "",
+          "price": 30,
+          "quantity": 455,
+          "url": "assets/images/sicam tomates 1kg.png"
+        }
+      ]
     }
   ]
 }

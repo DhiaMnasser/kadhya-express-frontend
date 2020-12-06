@@ -1,0 +1,27 @@
+<div class="prod col-lg-4 col-md-6 col-12 " width="auto" *ngIf="product.quantity > 0">
+  <div class="single-product  prod">
+    <div class="product-img">
+      <a [routerLink]="['/product',product.id]">
+        <img class="default-img img-fluid w-auto"  src="{{product.url}}"  alt="#">
+        <img class="hover-img img-fluid w-100" src="{{product.url}}"  alt="#">
+      </a>
+      <div class="button-head">
+        <div class="product-action">
+          <a data-toggle="modal" data-target="#exampleModal" title="Quick View" [routerLink]="['/product',product.id]"><i class=" ti-eye"></i><span>Quick Shop</span></a>
+        </div>
+        <div class="product-action-2">
+          <a title="Add to cart" (click)="addToCart()">Add to cart</a>
+        </div>
+      </div>
+    </div>
+    <div class="product-content text-capitalize">
+      <h3><a routerLink="">{{product.title}}</a></h3>
+      <div class="product-price">
+        <span>{{product.price}} DT</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
