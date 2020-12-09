@@ -2,18 +2,24 @@ import { Injectable } from '@angular/core';
 import {HttpClient, HttpErrorResponse} from '@angular/common/http';
 import {User} from '../models/user';
 import {Observable, throwError} from 'rxjs';
-import {catchError} from 'rxjs/operators';
+import {catchError, tap} from 'rxjs/operators';
+import {Router} from '@angular/router';
+// import { privateEncrypt } from 'crypto';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
+  constructor(private http: HttpClient, private router: Router) {
+  }
 
   url = 'http://localhost:3000/users';
   urlRegister = 'http://localhost:3000/register';
   urlLogin = 'http://localhost:3000/login';
-  private currentUserSubject: any;
-  constructor(private http: HttpClient) { }
+  currentUser: User;
+  //
+
+  listUsers: User[];
 
   // handling erros in service
   getAllUsers(): Observable<User[]>{
@@ -33,19 +39,23 @@ export class UserService {
     );
   }
 
-  postUser(user: User): Observable<User>{
-    return this.http.post<User>(this.urlRegister, user).pipe(
+  postUser(user: User){
+    return this.http.post<any>(this.urlRegister, user).pipe(
+      tap( resp => this.searchUser(JSON.parse(atob(resp.accessToken.split('.')[1])).email)),
       catchError((err) => {
         console.error(err);
         return throwError(err);
       })
+
     );
   }
 
-  userLogin(user: User): Observable<User>{
-    return this.http.post<User>(this.urlLogin, user).pipe(
+  userLogin(user: User){
+    return this.http.post<any>(this.urlLogin, user).pipe(
+      tap( resp => this.searchUser(JSON.parse(atob(resp.accessToken.split('.')[1])).email)),
       catchError((err) => {
         console.error(err);
+        alert(err.error);
         return throwError(err);
       })
     );
@@ -69,9 +79,28 @@ export class UserService {
     );
   }
 
-  // getCurrentUser(): Observable<any> {
-  //   return this.currentUserSubject.asObservable();
-  // }
+
+
+  searchUser(email: string) {
+    console.log('search user started');
+    this.getAllUsers().subscribe(
+      data => {
+              data.forEach(value => {
+                // console.log(value);
+                if (value.email === email){
+                  this.currentUser = value;
+                  console.log('current user:' + JSON.stringify(this.currentUser));
+                  localStorage.setItem('currentUser', JSON.stringify(this.currentUser));
+                }
+              });
+            }
+    );
+    this.router.navigate(['/home']);
+  }
+
+  getCurrentUser(): User{
+    return JSON.parse(localStorage.getItem('currentUser'));
+  }
 
 //  !!! handling errors in component see save() function in update-user component
 }

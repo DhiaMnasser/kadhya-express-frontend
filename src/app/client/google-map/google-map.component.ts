@@ -34,10 +34,15 @@ export class GoogleMapComponent {
       label: 'A',
       draggable: true
     };
+    console.log('dragEnd', this.marker, $event);
   }
 
   markerDragEnd(m: marker, $event: MouseEvent) {
     console.log('dragEnd', m, $event);
+  }
+
+  saveAdress() {
+
   }
 }
 

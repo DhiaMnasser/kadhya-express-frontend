@@ -1,5 +1,6 @@
-
+<div class="row-cols-6 d-flex">
 <agm-map
+  class="col-md-10"
   [latitude]="lat"
   [longitude]="lng"
   [zoom]="zoom"
@@ -7,7 +8,6 @@
   (mapClick)="mapClicked($event)">
 
   <agm-marker
-
     (markerClick)="clickedMarker(marker.label)"
     [latitude]="marker.lat"
     [longitude]="marker.lng"
@@ -24,3 +24,6 @@
 
 
 </agm-map>
+
+<button class="btn btn-primary " (click)="saveAdress()">Save address</button>
+</div>

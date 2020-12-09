@@ -11,6 +11,9 @@ import {Product} from '../models/product';
 })
 export class OrderService {
 
+  activeOrder: Order;
+  listOrders: Order[];
+
   url = 'http://localhost:3000/orders';
   constructor(private http: HttpClient) { }
 
@@ -51,11 +54,45 @@ export class OrderService {
   }
 
   putOrder(order: Order): Observable<Order>{
-    return this.http.put<Order>(this.url + '/' + order.ref, order).pipe(
+    return this.http.put<Order>(this.url + '/' + order.id, order).pipe(
       catchError((err) => {
         console.error(err);
         return throwError(err);
       })
     );
   }
+
+  getActiveOrder() {
+    this.activeOrder = new Order();
+    this.getAllOrders().subscribe(
+      (data) => {
+        this.listOrders = data.filter(order =>
+          order.userId == (JSON.parse(localStorage.getItem('currentUser')).id) );
+        this.activeOrder = this.listOrders.filter(order => order.etat)[0];
+        // this.listItems = this.activeOrder.prodList;
+
+        console.log('listOrders' + JSON.stringify(this.listOrders, null, 1));
+        console.log('activeOrder' + JSON.stringify(this.activeOrder, null, 1));
+        // console.log('listItems' + JSON.stringify(this.listItems, null, 1));
+      }
+    );
+    console.log('activeOrder' + JSON.stringify(this.activeOrder, null, 1));
+    return this.activeOrder;
+  }
+
+  //
+  // getActiveOrder() {
+  //   let activeorder = new Order();
+  //   this.getAllOrders().subscribe(
+  //     (data) => {
+  //       data.filter(order =>
+  //         order.etat && order.userId == (JSON.parse(localStorage.getItem('currentUser')).id) );
+  //       activeorder = data[0];
+  //       console.log('' + data);
+  //     }
+  //   );
+  //   return activeorder;
+  // }
+  //
+  //
 }
