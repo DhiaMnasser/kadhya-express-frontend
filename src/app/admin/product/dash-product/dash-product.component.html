@@ -2,13 +2,15 @@
 
   <nav >
 
-    <span class="toolbar-flex"></span>
+    <span class="d-flex "></span>
 
-    <a [routerLink]="['/admin', { outlets: {'admin':['products'] }}]" >Product list</a>
+    <a [routerLink]="['/admin/', { outlets: {'admin-product':['products'] }}]" >Product list</a>
+    <a [routerLink]="['/admin', { outlets: {'admin-product':['products'] }}]" >Add Product</a>
 <!--    <a [routerLink]="['/admin', { outlets: {'admin':['product-list'] }}]"  >Add Product</a>-->
     <span class="toolbar-flex"></span>
 
 <!--    <router-outlet name="admin-product"></router-outlet>-->
+    <app-template-form-product></app-template-form-product>
 
   </nav>
 </div>
