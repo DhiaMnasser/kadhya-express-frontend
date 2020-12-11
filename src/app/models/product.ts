@@ -4,8 +4,8 @@ export class Product {
   description!: string;
   price!: number;
   quantity!: number;
-  url!: string;
   category!: string;
+  url!: string;
   constructor() {
   }
 }

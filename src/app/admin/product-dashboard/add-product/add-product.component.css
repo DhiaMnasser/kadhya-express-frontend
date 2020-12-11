@@ -1,0 +1,6 @@
+.btn-success:hover {
+  background-color: green;
+}
+.btn-warning:hover {
+  background-color: red;
+}

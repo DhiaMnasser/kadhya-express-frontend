@@ -3,6 +3,7 @@ import {Product} from '../../models/product';
 import {OrderService} from '../../services/order.service';
 import {Order} from '../../models/order';
 import {Router} from '@angular/router';
+import {User} from "../../models/user";
 
 @Component({
   selector: 'app-product',
@@ -17,11 +18,12 @@ export class ProductComponent implements OnInit {
   constructor(private orderService: OrderService, private router: Router) { }
 
   ngOnInit(): void {
-    if (localStorage.getItem('curretUser') !== '') {
+    if (localStorage.getItem('currentUser') !== '') {
+      this.activeOrder = new Order();
       this.orderService.getAllOrders().subscribe(
         (data) => {
           this.listOrders = data.filter(order =>
-            order.userId == (JSON.parse(localStorage.getItem('currentUser')).id));
+            order.userId == ((JSON.parse(localStorage.getItem('currentUser')) as User).id));
           this.activeOrder = this.listOrders.filter(order => order.etat)[0];
           console.log('prod activeOrder' + JSON.stringify(this.activeOrder, null, 1));
 

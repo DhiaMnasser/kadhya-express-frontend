@@ -1,0 +1,7 @@
+* {
+  color: white;
+}
+
+#sidenav-main, #sidenav-main>div {
+  height: 100%;
+}

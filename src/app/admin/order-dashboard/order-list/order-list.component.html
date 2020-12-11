@@ -1,0 +1,33 @@
+
+<table class="table" border="2">
+  <tr><th>Ref</th><th>Date</th><th>totalPrice</th><th>validated</th></tr>
+  <tbody  *ngFor="let order of listOrders; let i = index" >
+  <tr class="bg-info">
+    <td>{{order.ref}}</td>
+    <td>{{order.date}}</td>
+    <td>{{order.totalPrice}}</td>
+    <td>{{order.validated}}</td>
+    <td>
+      <button class="btn btn-warning" (click)="validate(order)">Validate</button>
+    </td>
+    <td>
+      <button class="btn btn-success" (click)="delete(order)">Delete</button>
+    </td>
+    <td>
+      <button class="btn btn-warning" (click)="bilan.toggleAttribute('hidden') ">Show Details</button>
+    </td>
+  </tr>
+
+  <div class="" #bilan hidden >
+    <h5>Product List</h5>
+    <tr><th>Product</th><th>Quantity</th></tr>
+    <div *ngFor="let prod of order.prodList">
+    <tr class="bg-light">
+      <td>{{prod.title}}</td>
+      <td>{{prod.quantity}}</td>
+    </tr>
+    </div>
+  </div>
+  </tbody>
+</table>
+

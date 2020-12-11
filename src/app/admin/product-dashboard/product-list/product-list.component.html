@@ -1,0 +1,20 @@
+<table class="table">
+  <tr><th>Title</th><th>Price</th><th>quantity</th><th>Category</th></tr>
+  <tbody  *ngFor="let product of listProducts; let i= index" >
+  <tr>
+    <td>{{product.title}}</td>
+    <td>{{product.price}}</td>
+    <td>{{product.quantity}}</td>
+    <td>{{product.category}}</td>
+    <td>
+      <button class="btn btn-warning" [routerLink]="['../update-product/'+ product.id]">Update</button>
+    </td>
+    <td>
+      <button class="btn btn-success" (click)="delete(product.id)">
+        delete
+      </button>
+    </td>
+  </tr>
+  </tbody>
+</table>
+

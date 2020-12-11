@@ -38,12 +38,30 @@ export class UserService {
       })
     );
   }
+  getUserByMail(mail: string): Observable<User[]>{
+    return this.http.get<User[]>(this.url + '?email=' + mail).pipe(
+      catchError((err) => {
+        console.error(err);
+        return throwError(err);
+      })
+    );
+  }
 
   postUser(user: User){
     return this.http.post<any>(this.urlRegister, user).pipe(
-      tap( resp => this.searchUser(JSON.parse(atob(resp.accessToken.split('.')[1])).email)),
+      tap( resp => {
+          this.getUserByMail(JSON.parse(atob(resp.accessToken.split('.')[1])).email).subscribe(
+            data => {
+              let currUser: User = new User();
+              currUser = data[0];
+              console.log('post User' + JSON.stringify(data));
+              console.log('post User' + JSON.stringify(currUser));
+              localStorage.setItem('currentUser', JSON.stringify(data[0]));
+            });
+        }),
       catchError((err) => {
         console.error(err);
+        alert(err.error);
         return throwError(err);
       })
 
@@ -91,11 +109,14 @@ export class UserService {
                   this.currentUser = value;
                   console.log('current user:' + JSON.stringify(this.currentUser));
                   localStorage.setItem('currentUser', JSON.stringify(this.currentUser));
+                  if (this.currentUser.isAdmin){
+                    this.router.navigate(['admin']);
+                  } else {this.router.navigate(['home']);}
                 }
               });
             }
     );
-    this.router.navigate(['/home']);
+
   }
 
   getCurrentUser(): User{

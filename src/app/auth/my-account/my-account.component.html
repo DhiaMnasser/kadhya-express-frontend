@@ -1,0 +1,21 @@
+
+<div #overlay id="overlay" class="popup position-absolute  center align-content-center ">
+
+  <form #f="ngForm" class="center align-content-center">
+    <h3>Update Profile</h3>
+    <div class="h4 d-flex justify-content-end" routerLink="/shop" ><i class="fa fa-close" ></i></div>
+    <div class="form-group">
+      <label>Name</label>
+      <input #n="ngModel" placeholder="ex: Dhia Mnaser"  type="text" name="name" class="form-control" [(ngModel)]="user.name" >
+    </div>
+
+    <div class="form-group">
+      <label>Username</label>
+      <input #un="ngModel" placeholder="ex: Bret" type="text" name="username" class="form-control" [(ngModel)]="user.username" >
+    </div>
+
+    <button class="btn btn-success text-capitalize" type="button" (click)="save()" >Save</button>
+
+  </form>
+
+</div>

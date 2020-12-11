@@ -18,19 +18,25 @@ export class SignupComponent implements OnInit {
 
   ngOnInit(): void {
     this.user = new User();
-    console.log(this.user);
   }
 
   add(): void{
-    this.userService.postUser(this.user).subscribe();
-    const currUser = JSON.parse(localStorage.getItem('currentUser')) as User;
-    const order = new Order();
-    order.ref = 'ref' + currUser.username + 'v' + Date.now().valueOf();
-    order.userId = currUser.id;
-    order.etat = true;
-    order.totalPrice = 0;
-    order.prodList = [];
-    this.orderServie.postOrder(order).subscribe();
+
+    this.user.isAdmin = false;
+    this.userService.postUser(this.user).subscribe(data => {
+      const order: Order = new Order();
+      const currentUser: User = JSON.parse(localStorage.getItem('currentUser'));
+      order.ref = 'ref' + currentUser.username + 'v' + Date.now().valueOf();
+      order.userId = currentUser.id;
+      order.etat = true;
+      order.validated = false;
+      order.totalPrice = 0;
+      order.prodList = [];
+      console.log('currentUser' + currentUser);
+      console.log('data' + data );
+      console.log('order' + order);
+      this.orderServie.postOrder(order).subscribe();
+    });
   }
   // add(): void{
   //   map((userInfo: { token: string; user: any; }) => {

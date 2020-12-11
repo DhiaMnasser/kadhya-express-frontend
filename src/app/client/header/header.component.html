@@ -8,8 +8,8 @@
           <!-- Top Left -->
           <div class="top-left">
             <ul class="list-main">
-              <li><i class="ti-headphone-alt"></i> +060 (800) 801-582</li>
-              <li><i class="ti-email"></i> support@shophub.com</li>
+              <li><i class="ti-headphone-alt"></i> +216 12345678</li>
+              <li><i class="ti-email"></i> support@kadhyaexpress.com</li>
             </ul>
           </div>
           <!--/ End Top Left -->
@@ -20,8 +20,17 @@
             <ul class="list-main">
               <li><i class="ti-location-pin"></i> Store location</li>
               <li><i class="ti-alarm-clock"></i> <a routerLink="/shop">Daily deal</a></li>
-              <li><i class="ti-user"></i> <a routerLink="/signup">My account</a></li>
-              <li><i class="ti-power-off"></i><a routerLink="/signin">Login</a></li>
+              <li><i class="ti-user"></i>
+                <a *ngIf="isUserLoggedIn" routerLink="/my-account">My account</a>
+                <a *ngIf="!isUserLoggedIn" routerLink="/signup">Register</a>
+              </li>
+              <li><i class="ti-power-off"></i>
+                <a *ngIf="isUserLoggedIn" (click)="logOut()">logout</a>
+                <a *ngIf="!isUserLoggedIn" routerLink="/signin">Login</a>
+              </li>
+              <li *ngIf="isUserLoggedIn && currentUser.isAdmin" routerLink="/admin"><i class="ti-power-off"></i>
+                <a  >Admin Dashboard</a>
+              </li>
             </ul>
           </div>
           <!-- End Top Right -->
@@ -41,7 +50,7 @@
           <!--/ End Logo -->
           <!-- Search Form -->
           <div class="search-top">
-            <div class="top-search"><a href="#0"><i class="ti-search"></i></a></div>
+            <div class="top-search"><a ><i class="ti-search"></i></a></div>
             <!-- Search Form -->
             <div class="search-top">
               <form class="search-form">
@@ -52,7 +61,7 @@
             <!--/ End Search Form -->
           </div>
           <!--/ End Search Form -->
-          <div class="mobile-nav"><div class="slicknav_menu"><a href="#" aria-haspopup="true" role="button" tabindex="0" class="slicknav_btn slicknav_collapsed" style=""><span class="slicknav_menutxt"></span><span class="slicknav_icon slicknav_no-text"><span class="slicknav_icon-bar"></span><span class="slicknav_icon-bar"></span><span class="slicknav_icon-bar"></span></span></a><ul class="slicknav_nav slicknav_hidden" aria-hidden="true" role="menu" style="display: none;">
+          <div class="mobile-nav"><div class="slicknav_menu"><a  aria-haspopup="true" role="button" tabindex="0" class="slicknav_btn slicknav_collapsed" style=""><span class="slicknav_menutxt"></span><span class="slicknav_icon slicknav_no-text"><span class="slicknav_icon-bar"></span><span class="slicknav_icon-bar"></span><span class="slicknav_icon-bar"></span></span></a><ul class="slicknav_nav slicknav_hidden" aria-hidden="true" role="menu" style="display: none;">
             <li class="active"><a class="nav-link" routerLink="/home" role="menuitem" tabindex="-1">Home</a></li>
             <li><a class="nav-link" routerLink="/shop" role="menuitem" tabindex="-1">Shop</a></li>
             <li><a routerLink="/contactus" role="menuitem" tabindex="-1">Contact Us</a></li>
@@ -61,7 +70,6 @@
         <div class="col-lg-8 col-md-7 col-12">
           <div class="search-bar-top">
             <div class="search-bar">
-
               <div class="nice-select open" tabindex="0">
                 <span class="current" (click)=" selectList.toggleAttribute('hidden')">All Category</span>
                 <ul #selectList class="list" hidden>
@@ -82,10 +90,10 @@
           <div class="right-bar">
             <!-- Search Form -->
             <div class="sinlge-bar">
-              <a href="#" class="single-icon"><i class="fa fa-heart-o" aria-hidden="true"></i></a>
+              <a  class="single-icon"><i class="fa fa-heart-o" aria-hidden="true"></i></a>
             </div>
             <div class="sinlge-bar">
-              <a href="#" class="single-icon"><i class="fa fa-user-circle-o" aria-hidden="true"></i></a>
+              <a  class="single-icon"><i class="fa fa-user-circle-o" aria-hidden="true"></i></a>
             </div>
             <div class="sinlge-bar shopping">
               <a routerLink="/shopping-cart" class="single-icon"><i class="ti-bag"></i> <span class="total-count">2</span></a>
@@ -97,15 +105,15 @@
                 </div>
                 <ul class="shopping-list" >
                   <li>
-                    <a href="#" class="remove" title="Remove this item"><i class="fa fa-remove"></i></a>
-                    <a class="cart-img" href="#"><img src="https://via.placeholder.com/70x70" alt="#"></a>
-                    <h4><a href="#">Woman Ring</a></h4>
+                    <a  class="remove" title="Remove this item"><i class="fa fa-remove"></i></a>
+                    <a class="cart-img" ><img src="https://via.placeholder.com/70x70" alt="#"></a>
+                    <h4><a >Woman Ring</a></h4>
                     <p class="quantity">1x - <span class="amount">$99.00</span></p>
                   </li>
                   <li>
-                    <a href="#" class="remove" title="Remove this item"><i class="fa fa-remove"></i></a>
-                    <a class="cart-img" href="#"><img src="https://via.placeholder.com/70x70" alt="#"></a>
-                    <h4><a href="#">Woman Necklace</a></h4>
+                    <a  class="remove" title="Remove this item"><i class="fa fa-remove"></i></a>
+                    <a class="cart-img" ><img src="https://via.placeholder.com/70x70" alt="#"></a>
+                    <h4><a >Woman Necklace</a></h4>
                     <p class="quantity">1x - <span class="amount">$35.00</span></p>
                   </li>
                 </ul>
@@ -156,6 +164,7 @@
                       <li class="active"><a routerLink="/home">Home</a></li>
                       <li><a routerLink="/shop">Shop<span class="new">New</span></a>
                       </li>
+                      <li><a [hidden]="!isUserLoggedIn" routerLink="/my-orders">My Orders</a></li>
                       <li><a routerLink="/contact-us">Contact Us</a></li>
                     </ul>
                   </div>

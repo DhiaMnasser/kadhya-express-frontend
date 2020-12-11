@@ -11,7 +11,7 @@ import {OrderService} from '../../services/order.service';
 })
 export class ShopProductListComponent implements OnInit {
   listProducts!: Product[];
-  constructor(private  productService: ProductService, private orderService:OrderService) { }
+  constructor(private  productService: ProductService, private orderService: OrderService) { }
 
   ngOnInit(): void {
     this.productService.getProductsWS().subscribe(

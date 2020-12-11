@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {UserService} from '../../services/user.service';
 import {User} from '../../models/user';
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-signin',
@@ -11,7 +12,7 @@ import {User} from '../../models/user';
 export class SigninComponent implements OnInit {
 
   user: User;
-  constructor(private userService: UserService) { }
+  constructor(private userService: UserService, private router: Router) { }
 
   ngOnInit(): void {
     this.user = new User();
@@ -21,6 +22,7 @@ export class SigninComponent implements OnInit {
     this.userService.userLogin(this.user).subscribe(
       data => {
         console.log('token :' + ( JSON.parse(atob(data.accessToken.split('.')[1])) as User));
+
       }
     );
   }

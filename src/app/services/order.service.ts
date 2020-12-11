@@ -45,7 +45,7 @@ export class OrderService {
   }
 
   deleteOrder(order: Order): Observable<Order>{
-    return this.http.delete<Order>(this.url + '/' + order.ref).pipe(
+    return this.http.delete<Order>(this.url + '/' + order.id).pipe(
       catchError((err) => {
         console.error(err);
         return throwError(err);

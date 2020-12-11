@@ -1,14 +1,35 @@
-<div class="sidenav-list text-center col-2 d-flex flex-column sidenav-list center ml-1 mt-2 align-content-center bg-info">
-  <a  routerLink="/signin" >
-    <span>Signin</span>
-  </a>
-  <a  routerLink="/signup" >
-    <span>Signup</span>
-  </a>
-  <a  [routerLink]="['/admin', { outlets: {'admin':['products'] }}]" >
-    <span>Products </span>
-  </a>
-  <a routerLink="/offers" >
-    <span>Offers</span>
-  </a>
-</div>
+<nav class="sidenav navbar navbar-vertical  fixed-left  navbar-expand-xs navbar-light bg-white" id="sidenav-main">
+  <div class="scrollbar-inner bg-dark ">
+    <!-- Brand -->
+    <div class="sidenav-header  align-items-center">
+      <a class="navbar-brand" href="javascript:void(0)">
+        <img src="assets/images/logo.png" class="navbar-brand-img" alt="...">
+      </a>
+    </div>
+    <div class="navbar-inner ">
+      <!-- Collapse -->
+        <!-- Nav items -->
+        <ul class="navbar-nav align-items-center">
+          <li class="nav-item">
+            <a class="nav-link active"  [routerLink]="['products']">
+              <i class="ni ni-tv-2 text-primary"></i>
+              <span class="nav-link-text">Products</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link"  [routerLink]="['orders']">
+              <i class="ni ni-planet text-orange"></i>
+              <span class="nav-link-text">Orders</span>
+            </a>
+          </li>
+        </ul>
+        <!-- Divider -->
+        <hr class="my-3">
+        <!-- Heading -->
+        <a class="navbar-heading p-0 text-muted" routerLink="/home">Kadhya Express Shop</a>
+        <!-- Navigation -->
+
+
+    </div>
+  </div>
+</nav>
