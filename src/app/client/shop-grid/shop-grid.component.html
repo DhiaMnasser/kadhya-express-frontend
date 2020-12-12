@@ -1,8 +1,8 @@
 <section class="product-area shop-sidebar shop section">
   <div class="container">
     <div class="" style="display: flex" >
-      <app-shop-sidebar></app-shop-sidebar>
-      <app-shop-product-list></app-shop-product-list>
+      <app-shop-sidebar (searchCategoryEvent)="setListProducts($event)"></app-shop-sidebar>
+      <app-shop-product-list [listProducts]="listProducts" ></app-shop-product-list>
     </div>
   </div>
 </section>

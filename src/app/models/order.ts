@@ -8,5 +8,6 @@ export class Order {
   validated: boolean;
   date: Date;
   totalPrice: number;
+  address: string;
   prodList: Product[];
 }

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, Output, EventEmitter} from '@angular/core';
 
 import { MouseEvent } from '@agm/core';
 
@@ -11,6 +11,7 @@ import { MouseEvent } from '@agm/core';
 export class GoogleMapComponent {
   // google maps zoom level
   zoom: number = 8;
+  @Output() mapEvent = new EventEmitter<string>();
 
   // initial center position for the map
   lat: number = 36.906468168089894;
@@ -23,11 +24,11 @@ export class GoogleMapComponent {
       draggable: true
     };
 
-  clickedMarker(label: string) {
+  clickedMarker(label: string): void {
     console.log(`clicked the marker: ${label}`);
   }
 
-  mapClicked($event: MouseEvent) {
+  mapClicked($event: MouseEvent): void {
     this.marker = {
       lat: $event.coords.lat,
       lng: $event.coords.lng,
@@ -35,14 +36,16 @@ export class GoogleMapComponent {
       draggable: true
     };
     console.log('dragEnd', this.marker, $event);
+    this.saveAdress();
   }
 
-  markerDragEnd(m: marker, $event: MouseEvent) {
+  markerDragEnd(m: marker, $event: MouseEvent): void {
     console.log('dragEnd', m, $event);
+    this.saveAdress();
   }
 
-  saveAdress() {
-
+  saveAdress(): void {
+    this.mapEvent.emit(this.marker.lat + ', ' + this.marker.lng);
   }
 }
 

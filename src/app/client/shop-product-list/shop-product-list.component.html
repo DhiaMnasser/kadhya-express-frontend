@@ -26,8 +26,8 @@
           </div>
         </div>
         <ul class="view-mode">
-          <li class="active"><a href="#"><i class="fa fa-th-large"></i></a></li>
-          <li><a href="#"><i class="fa fa-th-list"></i></a></li>
+          <li class="active"><a ><i class="fa fa-th-large"></i></a></li>
+          <li><a ><i class="fa fa-th-list"></i></a></li>
         </ul>
       </div>
       <!--/ End Shop Top -->
@@ -35,7 +35,7 @@
   </div>
   <div class="row " >
 <!--    -->
-    <app-product *ngFor="let p of listProducts" [product]="p" (notification)="addToCart($event)" >
+    <app-product *ngFor="let p of listProducts" [product]="p" (addToCartNotif)="addToCart($event)" >
     </app-product>
 
   </div>

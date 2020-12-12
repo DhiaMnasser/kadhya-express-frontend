@@ -10,6 +10,7 @@ import {ShoppingCartComponent} from './shopping-cart/shopping-cart.component';
 import {GoogleMapComponent} from './google-map/google-map.component';
 import {MyAccountComponent} from '../auth/my-account/my-account.component';
 import {MyOrdersComponent} from './my-orders/my-orders.component';
+import {ContactUsComponent} from "./contact-us/contact-us.component";
 
 const routes: Routes = [
   { path: '', component: ClientComponent, children: [
@@ -20,8 +21,9 @@ const routes: Routes = [
       {path: 'my-account', component: MyAccountComponent},
       {path: 'product/:id', component: ProductDetailsComponent },
       {path: 'shopping-cart', component: ShoppingCartComponent},
-      {path: 'map', component: GoogleMapComponent},
+      // {path: 'map', component: GoogleMapComponent},
       {path: 'my-orders', component: MyOrdersComponent},
+      {path: 'contact-us', component: ContactUsComponent},
     ]},
 ];
 

@@ -75,11 +75,10 @@
   ],
   "orders": [
     {
-      "ref": "1",
+      "ref": "refadminv1607650875818",
       "userId": 1,
-      "etat": 1,
-      "validated": 0,
-      "date": "01/01/01",
+      "etat": true,
+      "validated": false,
       "totalPrice": 0,
       "prodList": [],
       "id": 1
@@ -88,7 +87,7 @@
       "ref": "refdhiav1607650875818",
       "userId": 2,
       "etat": true,
-      "validated": false,
+      "validated": true,
       "totalPrice": 0,
       "prodList": [],
       "id": 2

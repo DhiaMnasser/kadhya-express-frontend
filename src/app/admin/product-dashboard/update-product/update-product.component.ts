@@ -29,7 +29,8 @@ export class UpdateProductComponent implements OnInit {
   }
 
   save(){
-    if( this.selectedFile !== undefined ) this.product.url = this.selectedFile.src
+    if( this.selectedFile !== undefined )
+      this.product.url = this.selectedFile.src
     this.productService.putProduct(this.product).subscribe(
       prod => {
         this.product = prod;

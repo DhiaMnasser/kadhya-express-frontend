@@ -31,6 +31,7 @@ export class SignupComponent implements OnInit {
       order.etat = true;
       order.validated = false;
       order.totalPrice = 0;
+      order.address = '';
       order.prodList = [];
       console.log('currentUser' + currentUser);
       console.log('data' + data );

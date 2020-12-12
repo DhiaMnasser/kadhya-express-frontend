@@ -10,6 +10,7 @@ import {User} from '../../models/user';
   templateUrl: './shopping-cart.component.html',
   styleUrls: ['./shopping-cart.component.css']
 })
+
 export class ShoppingCartComponent implements OnInit {
   listItems: Product[];
   listOrders: Order[];
@@ -65,7 +66,6 @@ export class ShoppingCartComponent implements OnInit {
         this.activeOrder.totalPrice += product.price;
         this.activeOrder.prodList = this.listItems ;
         this.orderService.putOrder(this.activeOrder).subscribe();
-
       }
     });
   }
@@ -84,5 +84,11 @@ export class ShoppingCartComponent implements OnInit {
     console.log('new order created');
     this.orderService.putOrder(this.activeOrder).subscribe();
     this.orderService.postOrder(order).subscribe();
+  }
+
+  setAddress(address: string){
+    console.log(address);
+    this.activeOrder.address = address;
+    console.log(this.activeOrder);
   }
 }

@@ -1,6 +1,4 @@
 <div class="px-4 px-lg-0">
-
-
   <div class="pb-5">
     <div class="container">
       <div class="row">
@@ -62,10 +60,9 @@
               </div>
             </div>
           </div>
-          <div class="bg-light rounded-pill px-4 py-3 text-uppercase font-weight-bold">Instructions for seller</div>
+          <div class="bg-light rounded-pill px-4 py-3 text-uppercase font-weight-bold">Enter Your Address</div>
           <div class="p-4">
-            <p class="font-italic mb-4">If you have some information for the seller you can leave them in the box below</p>
-            <textarea name="" cols="30" rows="2" class="form-control"></textarea>
+            <app-google-map (mapEvent)="setAddress($event)" ></app-google-map>
           </div>
         </div>
         <div class="col-lg-6">
@@ -78,7 +75,7 @@
                 <h5 class="font-weight-bold">{{activeOrder.totalPrice}} DT</h5>
               </li>
             </ul>
-            <button  class="btn btn-primary mr-2  rounded-pill py-2 btn-block" (click)="checkOut()">Procceed to checkout</button>
+            <button [disabled]="activeOrder.totalPrice === 0"  class="btn btn-primary mr-2  rounded-pill py-2 btn-block" (click)="checkOut()">Procceed to checkout</button>
           </div>
         </div>
       </div>

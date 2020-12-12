@@ -54,8 +54,7 @@
             <!-- Search Form -->
             <div class="search-top">
               <form class="search-form">
-                <input type="text" placeholder="Search here..." name="search">
-                <button value="search" type="submit"><i class="ti-search"></i></button>
+
               </form>
             </div>
             <!--/ End Search Form -->
@@ -80,8 +79,9 @@
                 </ul>
               </div>
               <form>
-                <input name="search" placeholder="Search Products Here....." type="search">
-                <button class="btnn"><i class="ti-search"></i></button>
+
+                <input name="search" placeholder="Search Products Here....." type="search" [(ngModel)]="searchedProducts" >
+                <button class="btnn" (click)="searchProducts('title', searchedProducts)"><i class="ti-search"></i></button>
               </form>
             </div>
           </div>
@@ -98,33 +98,33 @@
             <div class="sinlge-bar shopping">
               <a routerLink="/shopping-cart" class="single-icon"><i class="ti-bag"></i> <span class="total-count">2</span></a>
               <!-- Shopping Item -->
-              <div class="shopping-item">
-                <div class="dropdown-cart-header">
-                  <span>2 Items</span>
-                  <a routerLink="/shopping-cart">View Cart</a>
-                </div>
-                <ul class="shopping-list" >
-                  <li>
-                    <a  class="remove" title="Remove this item"><i class="fa fa-remove"></i></a>
-                    <a class="cart-img" ><img src="https://via.placeholder.com/70x70" alt="#"></a>
-                    <h4><a >Woman Ring</a></h4>
-                    <p class="quantity">1x - <span class="amount">$99.00</span></p>
-                  </li>
-                  <li>
-                    <a  class="remove" title="Remove this item"><i class="fa fa-remove"></i></a>
-                    <a class="cart-img" ><img src="https://via.placeholder.com/70x70" alt="#"></a>
-                    <h4><a >Woman Necklace</a></h4>
-                    <p class="quantity">1x - <span class="amount">$35.00</span></p>
-                  </li>
-                </ul>
-                <div class="bottom">
-                  <div class="total">
-                    <span>Total</span>
-                    <span class="total-amount">$134.00</span>
-                  </div>
-                  <a routerLink="/home" class="btn animate">Checkout</a>
-                </div>
-              </div>
+<!--              <div class="shopping-item">-->
+<!--                <div class="dropdown-cart-header">-->
+<!--                  <span>2 Items</span>-->
+<!--                  <a routerLink="/shopping-cart">View Cart</a>-->
+<!--                </div>-->
+<!--                <ul class="shopping-list" >-->
+<!--                  <li>-->
+<!--                    <a  class="remove" title="Remove this item"><i class="fa fa-remove"></i></a>-->
+<!--                    <a class="cart-img" ><img src="https://via.placeholder.com/70x70" alt="#"></a>-->
+<!--                    <h4><a >Woman Ring</a></h4>-->
+<!--                    <p class="quantity">1x - <span class="amount">$99.00</span></p>-->
+<!--                  </li>-->
+<!--                  <li>-->
+<!--                    <a  class="remove" title="Remove this item"><i class="fa fa-remove"></i></a>-->
+<!--                    <a class="cart-img" ><img src="https://via.placeholder.com/70x70" alt="#"></a>-->
+<!--                    <h4><a >Woman Necklace</a></h4>-->
+<!--                    <p class="quantity">1x - <span class="amount">$35.00</span></p>-->
+<!--                  </li>-->
+<!--                </ul>-->
+<!--                <div class="bottom">-->
+<!--                  <div class="total">-->
+<!--                    <span>Total</span>-->
+<!--                    <span class="total-amount">$134.00</span>-->
+<!--                  </div>-->
+<!--                  <a routerLink="/home" class="btn animate">Checkout</a>-->
+<!--                </div>-->
+<!--              </div>-->
               <!--/ End Shopping Item -->
             </div>
           </div>
@@ -142,15 +142,12 @@
               <h3 class="cat-heading"  (click)="sidenav.toggleAttribute('hidden')"><i class="fa fa-bars" aria-hidden="true"></i>CATEGORIES</h3>
               <div #sidenav hidden>
                 <ul class="main-category" >
-                    <li><a routerLink="/shop" (click)="sidenav.toggleAttribute('hidden')">accessories</a></li>
-                    <li><a routerLink="/shop" (click)="sidenav.toggleAttribute('hidden')">top 100 offer</a></li>
-                    <li><a routerLink="/shop" (click)="sidenav.toggleAttribute('hidden')">sunglass</a></li>
-                    <li><a routerLink="/shop" (click)="sidenav.toggleAttribute('hidden')">watch</a></li>
-                    <li><a routerLink="/shop" (click)="sidenav.toggleAttribute('hidden')">man’s product</a></li>
-                    <li><a routerLink="/shop" (click)="sidenav.toggleAttribute('hidden')">ladies</a></li>
-                    <li><a routerLink="/shop"  (click)="sidenav.toggleAttribute('hidden')">westrn dress</a></li>
-                    <li><a routerLink="/shop"  (click)="sidenav.toggleAttribute('hidden')">denim </a></li>
-                </ul>
+                    <li><a routerLink="/shop" (click)="searchProducts('category', 'Canned fish and meat'); sidenav.toggleAttribute('hidden')">Canned fish and meat</a></li>
+                    <li><a routerLink="/shop" (click)="searchProducts('category', 'Canned vegetables and tomatoes'); sidenav.toggleAttribute('hidden')">Canned vegetables and tomatoes</a></li>
+                    <li><a routerLink="/shop" (click)="searchProducts('category', 'Savory products and appetizers'); sidenav.toggleAttribute('hidden')">Savory products and appetizers</a></li>
+                    <li><a routerLink="/shop" (click)="searchProducts('category', 'Pasta, Couscous'); sidenav.toggleAttribute('hidden')">Pasta, Couscous</a></li>
+                    <li><a routerLink="/shop" (click)="searchProducts('category', 'Flours, rice and pulses');sidenav.toggleAttribute('hidden')">Flours, rice and pulses</a></li>
+                    </ul>
               </div>
             </div>
           </div>

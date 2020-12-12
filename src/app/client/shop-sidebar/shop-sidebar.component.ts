@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, EventEmitter, OnInit, Output} from '@angular/core';
+import {Product} from "../../models/product";
+import {SearchService} from '../../services/search.service';
 
 @Component({
   selector: 'app-shop-sidebar',
@@ -7,9 +9,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ShopSidebarComponent implements OnInit {
 
-  constructor() { }
+
+  @Output() searchCategoryEvent = new EventEmitter<Product[]>();
+  constructor(private searchService: SearchService) { }
 
   ngOnInit(): void {
   }
 
+  searchProducts( criteria: string, value: string) {
+
+    this.searchCategoryEvent.emit(this.searchService.searchProducts([], criteria, value));
+  }
 }

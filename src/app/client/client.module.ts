@@ -23,6 +23,7 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {RouterModule} from '@angular/router';
 import {HttpClientModule} from '@angular/common/http';
 import { MyOrdersComponent } from './my-orders/my-orders.component';
+import { ContactUsComponent } from './contact-us/contact-us.component';
 
 
 @NgModule({
@@ -42,7 +43,8 @@ import { MyOrdersComponent } from './my-orders/my-orders.component';
     ShopServiceComponent,
     ShopSidebarComponent,
     ShoppingCartComponent,
-    MyOrdersComponent
+    MyOrdersComponent,
+    ContactUsComponent
   ],
   imports: [
     CommonModule,

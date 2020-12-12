@@ -40,7 +40,6 @@ export class AddProductComponent implements OnInit {
 
   onSubmit(): void {
 
-
     Object.assign(this.product, this.productForm.value);
     this.product.url = this.selectedFile.src;
     console.log('this.productForm.value' + this.productForm.value);
