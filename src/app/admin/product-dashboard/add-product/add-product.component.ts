@@ -44,7 +44,7 @@ export class AddProductComponent implements OnInit {
     this.product.url = this.selectedFile.src;
     console.log('this.productForm.value' + this.productForm.value);
     console.log('this.product' + JSON.stringify(this.product, null, 4));
-    alert('success \n\n' + JSON.stringify(this.product, null, 4));
+    alert('Added Product!');
     this.productService.postProduct(this.product).subscribe(data =>
       this.router.navigate(['admin/products/product-list']));
   }

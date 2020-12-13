@@ -10,6 +10,7 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {AppRoutingModule} from '../../app-routing.module';
 import {RouterModule} from '@angular/router';
 import {HttpClientModule} from '@angular/common/http';
+import { SearchProductComponent } from './search-product/search-product.component';
 
 
 @NgModule({
@@ -17,7 +18,8 @@ import {HttpClientModule} from '@angular/common/http';
     ProductDashboardComponent,
     ProductListComponent,
     AddProductComponent,
-    UpdateProductComponent],
+    UpdateProductComponent,
+    SearchProductComponent],
   imports: [
     CommonModule,
     ProductDashboardRoutingModule,

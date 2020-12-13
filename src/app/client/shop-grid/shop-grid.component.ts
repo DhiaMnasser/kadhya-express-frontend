@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import {Product} from "../../models/product";
-import {OrderService} from "../../services/order.service";
-import {SearchService} from "../../services/search.service";
-import {ProductService} from "../../services/product.service";
+import {Product} from '../../models/product';
+import {OrderService} from '../../services/order.service';
+import {SearchService} from '../../services/search.service';
+import {ProductService} from '../../services/product.service';
 
 @Component({
   selector: 'app-shop-grid',
@@ -12,6 +12,7 @@ import {ProductService} from "../../services/product.service";
 export class ShopGridComponent implements OnInit {
 
   listProducts: Product[];
+  displayItFlex: {};
   constructor(private  productService: ProductService, private searchService: SearchService) { }
 
   ngOnInit(): void {
@@ -23,10 +24,16 @@ export class ShopGridComponent implements OnInit {
         (data: Product[]) => this.listProducts = data
       );
     }
+    this.setCurrentStyles();
   }
 
   setListProducts(prodList: Product[]){
     this.listProducts = prodList;
+  }
+  setCurrentStyles() {
+    this.displayItFlex = {
+      'display' : 'flex'
+    };
   }
 
 }

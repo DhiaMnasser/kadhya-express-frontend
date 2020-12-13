@@ -24,29 +24,10 @@ export class SignupComponent implements OnInit {
 
     this.user.isAdmin = false;
     this.userService.postUser(this.user).subscribe(data => {
-      const order: Order = new Order();
-      const currentUser: User = JSON.parse(localStorage.getItem('currentUser'));
-      order.ref = 'ref' + currentUser.username + 'v' + Date.now().valueOf();
-      order.userId = currentUser.id;
-      order.etat = true;
-      order.validated = false;
-      order.totalPrice = 0;
-      order.address = '';
-      order.prodList = [];
-      console.log('currentUser' + currentUser);
-      console.log('data' + data );
-      console.log('order' + order);
-      this.orderServie.postOrder(order).subscribe();
+
     });
   }
-  // add(): void{
-  //   map((userInfo: { token: string; user: any; }) => {
-  //     localStorage.setItem('token', userInfo.token);
-  //     sessionStorage.next(userInfo.user); // <-- pump the value in here
-  //     console.log(userInfo.user);
-  //     return userInfo.user;
-  //   });
-  // }
+
 
 }
 

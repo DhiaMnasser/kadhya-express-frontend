@@ -4,13 +4,15 @@ import {User} from '../models/user';
 import {Observable, throwError} from 'rxjs';
 import {catchError, tap} from 'rxjs/operators';
 import {Router} from '@angular/router';
+import {Order} from "../models/order";
+import {OrderService} from "./order.service";
 // import { privateEncrypt } from 'crypto';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
-  constructor(private http: HttpClient, private router: Router) {
+  constructor(private http: HttpClient, private router: Router, private orderService: OrderService) {
   }
 
   url = 'http://localhost:3000/users';
@@ -49,7 +51,7 @@ export class UserService {
 
   postUser(user: User){
     return this.http.post<any>(this.urlRegister, user).pipe(
-      tap( resp => {
+      tap( (resp) => {
           this.getUserByMail(JSON.parse(atob(resp.accessToken.split('.')[1])).email).subscribe(
             data => {
               let currUser: User = new User();
@@ -57,6 +59,16 @@ export class UserService {
               console.log('post User' + JSON.stringify(data));
               console.log('post User' + JSON.stringify(currUser));
               localStorage.setItem('currentUser', JSON.stringify(data[0]));
+              const order: Order = new Order();
+              order.ref = 'ref' + currUser.username + 'v' + Date.now().valueOf();
+              order.userId = currUser.id;
+              order.etat = true;
+              order.validated = false;
+              order.totalPrice = 0;
+              order.address = '';
+              order.prodList = [];
+              this.orderService.postOrder(order).subscribe();
+              this.router.navigate(['home']);
             });
         }),
       catchError((err) => {

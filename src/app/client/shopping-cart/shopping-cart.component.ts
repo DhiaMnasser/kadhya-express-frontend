@@ -4,6 +4,7 @@ import {ProductService} from '../../services/product.service';
 import {Order} from '../../models/order';
 import {OrderService} from '../../services/order.service';
 import {User} from '../../models/user';
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-shopping-cart',
@@ -15,13 +16,12 @@ export class ShoppingCartComponent implements OnInit {
   listItems: Product[];
   listOrders: Order[];
   activeOrder: Order;
+  coupon: string;
+  isApplied = false;
 
-  constructor(private productService: ProductService, private orderService: OrderService) { }
+  constructor(private productService: ProductService, private orderService: OrderService, private router: Router) { }
 
   ngOnInit(): void {
-
-    // this.listOrder = new Array<Order>();
-    // this.listItems = new Array<Product>();
 
     this.orderService.getAllOrders().subscribe(
       (data) => {
@@ -29,7 +29,6 @@ export class ShoppingCartComponent implements OnInit {
           order.userId == (JSON.parse(localStorage.getItem('currentUser')).id) );
         this.activeOrder = this.listOrders.filter(order => order.etat)[0];
         this.listItems = this.activeOrder.prodList;
-
         console.log('listOrders' + JSON.stringify(this.listOrders, null, 1));
         console.log('activeOrder' + JSON.stringify(this.activeOrder, null, 1));
         console.log('listItems' + JSON.stringify(this.listItems, null, 1));
@@ -42,6 +41,7 @@ export class ShoppingCartComponent implements OnInit {
     this.listItems.splice(this.listItems.indexOf(index), 1);
     this.activeOrder.prodList = this.listItems;
     this.activeOrder.totalPrice -= (index.price * index.quantity);
+    if (this.activeOrder.prodList.length == 0 ){this.activeOrder.totalPrice = 0; }
     this.orderService.putOrder(this.activeOrder).subscribe();
     console.log(this.activeOrder.prodList);
   }
@@ -60,7 +60,7 @@ export class ShoppingCartComponent implements OnInit {
   incQuantity(product: Product) {
     console.log('+');
     this.productService.getProductById(product.id).subscribe(data => {
-      if (data.quantity > 1){
+      if (data.quantity > product.quantity ){
         const index = this.listItems.indexOf(product);
         this.listItems[index].quantity++;
         this.activeOrder.totalPrice += product.price;
@@ -71,24 +71,48 @@ export class ShoppingCartComponent implements OnInit {
   }
 
   checkOut() {
-    this.activeOrder.totalPrice += 5;
+    if (this.activeOrder.address !== '' && this.activeOrder.address !== undefined && this.activeOrder.prodList.length > 0){
     this.activeOrder.etat = false;
+    this.activeOrder.totalPrice += 5;
+    this.activeOrder.date = new Date();
     const currUser = JSON.parse(localStorage.getItem('currentUser')) as User;
-    const order = new Order();
-    order.ref = 'ref' + currUser.username + 'v' + Date.now().valueOf();
-    order.userId = currUser.id;
-    order.etat = true;
-    order.validated = false;
-    order.totalPrice = 0;
-    order.prodList = [];
+    const newOrder = new Order();
+    newOrder.ref = 'ref' + currUser.username + 'v' + Date.now().valueOf();
+    newOrder.userId = currUser.id;
+    newOrder.etat = true;
+    newOrder.validated = false;
+    newOrder.totalPrice = 0;
+    newOrder.prodList = [];
     console.log('new order created');
-    this.orderService.putOrder(this.activeOrder).subscribe();
-    this.orderService.postOrder(order).subscribe();
+    let allProducts: Product[];
+    this.productService.getProductsWS().subscribe(data => {
+      allProducts = data;
+      this.activeOrder.prodList.forEach(orderProd => {
+        allProducts.forEach(prod => {
+          if (prod.title === orderProd.title) {
+            prod.quantity -= orderProd.quantity;
+            this.productService.putProduct(prod);
+          }
+        });
+      });
+      this.orderService.putOrder(this.activeOrder)
+        .subscribe(() => {
+          this.orderService.postOrder(newOrder).subscribe();
+          this.router.navigate(['home']);
+        });
+    });
+  } else { alert('something went wrong! Please try again');}
   }
 
   setAddress(address: string){
     console.log(address);
     this.activeOrder.address = address;
     console.log(this.activeOrder);
+  }
+
+  applyCoupon() {
+    if ( !this.isApplied && this.coupon === '10off') {
+      this.activeOrder.totalPrice *= 0.9;
+       this.isApplied = true;}
   }
 }

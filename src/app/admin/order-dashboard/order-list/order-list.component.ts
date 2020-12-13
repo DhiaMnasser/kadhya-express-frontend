@@ -17,7 +17,7 @@ export class OrderListComponent implements OnInit {
 
   ngOnInit(): void {
     this.orderService.getAllOrders().subscribe(
-      data => this.listOrders = data.filter(order => order.etat )
+      data => this.listOrders = data.filter(order => !order.etat )
     );
   }
 

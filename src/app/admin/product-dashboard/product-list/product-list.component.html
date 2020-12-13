@@ -1,7 +1,8 @@
+
 <table class="table">
   <tr><th>Title</th><th>Price</th><th>quantity</th><th>Category</th></tr>
-  <tbody  *ngFor="let product of listProducts; let i= index" >
-  <tr>
+  <tbody *ngFor="let product of listProducts; let i= index" >
+  <tr *ngIf="searchQuery == '' || product.title.toLowerCase().includes(searchQuery.toLowerCase()) ||  product.category.toLowerCase().includes(searchQuery.toLowerCase())">
     <td>{{product.title}}</td>
     <td>{{product.price}}</td>
     <td>{{product.quantity}}</td>

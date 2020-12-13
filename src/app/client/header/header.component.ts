@@ -34,6 +34,6 @@ export class HeaderComponent implements OnInit {
 
   logOut() {
     localStorage.setItem('currentUser', '');
-    location.reload();
+    this.router.navigate(['home']);
   }
 }

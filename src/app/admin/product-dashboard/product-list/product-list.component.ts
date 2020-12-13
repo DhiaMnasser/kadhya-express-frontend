@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit, SimpleChanges} from '@angular/core';
 import {Product} from '../../../models/product';
 import {ProductService} from '../../../services/product.service';
 
@@ -10,7 +10,10 @@ import {ProductService} from '../../../services/product.service';
 export class ProductListComponent implements OnInit {
 
   listProducts: Product[];
-  constructor(private  productService: ProductService) { }
+  @Input() searchQuery: string;
+
+  constructor(private  productService: ProductService) {
+  }
 
   ngOnInit(): void {
     this.productService.getProductsWS().subscribe(
@@ -34,6 +37,5 @@ export class ProductListComponent implements OnInit {
       (prod: Product)  => console.log(prod)
     );
   }
-
 
 }

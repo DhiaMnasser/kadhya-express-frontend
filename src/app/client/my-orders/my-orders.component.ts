@@ -26,4 +26,8 @@ export class MyOrdersComponent implements OnInit {
         }
       );
     }
+
+  deleteItem(order: Order) {
+    this.orderService.deleteOrder(order).subscribe();
+  }
 }
